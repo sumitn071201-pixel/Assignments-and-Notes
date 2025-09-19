@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <style>
+            h1,/*selects the h1 and h2 tags*/
+            h2{
+                text-align: center; /*center alignment for the selected tags which are h1 and h2*/
+            }
+            #formContainer {
+                text-align: left;/*sets the alignment for the form container to left*/
+                margin-bottom: 200px; /*sets the margin btw container and the the next element. here the next element is table*/
+            }
+            label {
+                display: block;/*for all the label tags displays the elements as a block*/
+                margin-top: 20px; /*sets the margin btw each one of the label*/
+
+            }
+
+            button{
+                margin: 10px;/*sets the margin between the button and the label block*/
+                padding: 10px 20px;/*sets the length and breadth of the button*/
+                background-color: green;/*sets the color to the button*/
+                color: #fff;/*sets the color to the font inside the button*/
+                border-radius: 3000px;/*makes the button rounder on the edges if the value of px is increased*/
+                cursor: pointer;/*turns the cursor into the finger pointer*/
+            }
+
+            button:hover /*hover is a feature and button is the one that we created and hover */
+            {
+                background-color: black;/*turns the color of the button when the cursor is hovering on the button*/
+            }
+            table{
+                border-collapse:collapse;/*collapse removes the column lines and seperate allows the border lines to show on the table row0*/
+                margin-bottom: 50px;/*margin bottom means page ke niche se leke 50px table tak*/
+                width: 100%;/*the table occupies full screen*/
+            }
+            th,
+            td /*th means table head and td means table data. th holds row0 and th holds data inserted by user or dev*/
+            {
+                background-color: cyan;/*sets both th and td bg color to cyan and font color to balck*/
+                color: black;
+
+            }
+
+
+        </style>
+    </head>
+<body>
+    <h2>User Data Management</h2> 
+    <div id="formContainer">
+        <label for="nameInput">
+        Name:
+        </label>
+        <input type="text" id="nameInput" placeholder="Enter Name">
+        <label for="emailInput">
+            Email ID:
+        </label>
+        <input type="email" id="emailInput" placeholder="Enter Email ID" >
+        <label for="numberInput">
+            Mobile Details:
+        </label>
+        <input type="text" id="numberInput" placeholder="Enter Mobile number">
+        <label for="addressInput">
+            Address:
+        </label>
+        <textarea name="addressBar" id="addressInput" placeholder="Enter your address"></textarea>
+        <br>
+        <button onclick="addData()">Add</button>
+    </div>
+    <table id="outputTable">
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Mobile details</th>
+            <th>Address</th>
+            <th>Action</th>
+        </tr>
+    </table>
+    <script>
+  function addData(){
+    //geting the values from the user
+    let name = document.getElementById("nameInput").value;
+    let email = document.getElementById("emailInput").value;
+    let mobile = document.getElementById("numberInput").value;
+    let address = document.getElementById("addressInput").value;
+
+    //get the table and insert a new row at the end of the table
+    let table = document.getElementById("outputTable");
+    let newRow= table.insertRow(table.rows.length);
+
+    //insert data into cells of the new row
+    newRow.insertRow(0).innerHTML = name;
+    newRow.insertRow(1).innerHTML = email;
+    newRow.insertRow(2).innerHTML = mobile;
+    newRow.insertRow(3).innerHTML = address;
+    newRow.insertRow(4).innerHTML = name
+        '<button onclick= "editData(this)">Edit/button>' +
+        '<button onclick= "deleteData(this)">Delete </button>';
+
+
+    }
+    </script>  
+      
+
+
+
+
+
+
+</body>
+
+
+
+
+</html>

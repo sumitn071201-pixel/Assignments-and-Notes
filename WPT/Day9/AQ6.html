@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>jQuery Class Methods Example</title>
+  <style>
+    .highlight {
+      background-color: yellow;
+      font-weight: bold;
+    }
+    .error {
+      color: red;
+      font-size: 18px;
+    }
+    .box {
+      width: 200px;
+      height: 100px;
+      border: 2px solid black;
+      margin-top: 20px;
+      padding: 10px;
+      text-align: center;
+      line-height: 80px;
+    }
+  </style>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <h2>jQuery: addClass(), removeClass(), toggleClass()</h2>
+
+  <button id="addBtn">Add Highlight</button>
+  <button id="removeBtn">Remove Highlight</button>
+  <button id="toggleBtn">Toggle Error</button>
+
+  <div id="myBox" class="box">Hello, I’m a Box!</div>
+
+  <script>
+    $(document).ready(function() {
+      $("#addBtn").click(function() {
+        $("#myBox").addClass("highlight");
+      });
+
+      $("#removeBtn").click(function() {
+        $("#myBox").removeClass("highlight");
+      });
+
+      $("#toggleBtn").click(function() {
+        $("#myBox").toggleClass("error");
+      });
+    });
+  </script>
+</body>
+</html>

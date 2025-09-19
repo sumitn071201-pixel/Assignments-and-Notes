@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AJAX JSON Example</title>
+
+</head>
+<body>
+  <h2>AJAX: Fetch Posts and Display (id & title)</h2>
+  <button onclick="loadData()">Load Data</button>
+
+  <table id="dataTable">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Title</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+    </tbody>
+  </table>
+
+  <script>
+    function loadData() 
+    {
+      let xhr = new XMLHttpRequest();
+      xhr.open("GET", "https://jsonplaceholder.typicode.com/posts", true);
+
+      xhr.onreadystatechange = function () 
+      {
+        if (this.readyState === 4 && this.status === 200) 
+        {
+          let data = JSON.parse(this.responseText);
+          let tableBody = document.querySelector("#dataTable tbody");
+          tableBody.innerHTML = ""; // clear old data
+
+          data.forEach(post => 
+          {
+            let row = `<tr>
+                        <td>${post.id}</td>
+                        <td>${post.title}</td>
+                      </tr>`;
+            tableBody.innerHTML += row;
+          });
+        }
+      };
+      xhr.send();
+    }
+  </script>
+</body>
+</html>

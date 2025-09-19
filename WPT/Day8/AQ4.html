@@ -1,0 +1,87 @@
+<html>
+    <head>
+    
+    <meta charset="UTF-8">
+    <title>Quote Scroller</title>
+   
+    <style>
+        body {
+            background: #f9f9f9;
+            font-family: 'Georgia', serif;
+            text-align: center;
+            padding-top: 50px;
+        }
+        #container {
+            position: relative;
+            width: 80%;
+            height: 100px;
+            margin: auto;
+            overflow: hidden;
+            border: 2px solid #444;
+            border-radius: 10px;
+            background: #fff;
+        }
+        #quote {
+            position: absolute;
+            white-space: nowrap;
+            font-size: 28px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            background: #2c3e50;
+            color: #fff;
+        }
+        button:hover {
+            background: #34495e;
+        }
+    </style>
+
+        <script src="jquery-3.7.1.min.js"></script>
+    </head>
+    <body>
+       <div id="containter">
+        <div id="quote">"If you spend your time chasing butterflies, they'll fly away. But if you spend your time making a garden, the butterflies will come. And if they dont, you'll still have a beautiful garden. As long as you dont clip the flowers that blooms just to prove you're a gardener"</div>
+       </div>
+       <button id="start"> Start Scroll</button>
+
+        <script>
+            $(document).ready(function()
+            {
+                let $quote= $("#qoute");
+                let $container = $("#container");
+                let containerWidth= $container.width();
+                let quoteWidth= $quote.width();
+                let times = 0 ;
+
+                function scrollRight() {
+                    $quote.css({left: -quoteWidth}); 
+                    $quote.animate({left: containerWidth}, 3000, function(){
+                        times++;
+                        if(times < 4){
+                            scrollRight();
+                        } else {
+                            scrollLeft();
+                        }
+                    });
+                }
+
+                function scrollLeft() {
+                    $quote.css({left: containerWidth}); 
+                    $quote.animate({left: -quoteWidth}, 3000);
+                }
+
+                times = 0;
+                scrollRight();
+            });
+
+            
+        </script>
+    </body>
+</html>

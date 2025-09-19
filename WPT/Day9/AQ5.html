@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AJAX Fetch by ID with Validation & Error Handling</title>
+  <style>
+  </style>
+</head>
+<body>
+  <h2>Fetch Post by ID (with Validation + try/catch/finally)</h2>
+
+  <form id="postForm" onsubmit="loadData(event)">
+    <label>Enter Post ID (1–100): </label>
+    <input type="number" id="postId" name="postId" 
+           required minlength="1" maxlength="3" min="1" max="100">
+    <button type="submit">Get Post</button>
+    <div id="errorMsg" class="error"></div>
+  </form>
+
+  <table id="dataTable">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Title</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Data will appear here -->
+    </tbody>
+  </table>
+
+  <script>
+    function loadData(event) {
+      event.preventDefault(); // stop page refresh
+
+      let input = document.getElementById("postId");
+      let errorDiv = document.getElementById("errorMsg");
+      let tableBody = document.querySelector("#dataTable tbody");
+
+      try {
+        // 1. Validate input
+        if (!input.checkValidity()) {
+          throw new Error(input.validationMessage);
+        }
+
+        let id = input.value.trim();
+        let xhr = new XMLHttpRequest();
+        xhr.open("GET", "https://jsonplaceholder.typicode.com/posts/" + id, true);
+
+        xhr.onreadystatechange = function () {
+          if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
+              try {
+                let post = JSON.parse(xhr.responseText);
+
+                tableBody.innerHTML = `<tr>
+                                          <td>${post.id}</td>
+                                          <td>${post.title}</td>
+                                        </tr>`;
+                errorDiv.textContent = "";
+              } catch (parseError) {
+                errorDiv.textContent = "Error parsing JSON response.";
+              }
+            } else {
+              errorDiv.textContent = "Post not found or server error!";
+            }
+          }
+        };
+
+        xhr.send();
+
+      } catch (err) {
+        // Handle validation or runtime errors
+        errorDiv.textContent = "Error: " + err.message;
+        tableBody.innerHTML = "";
+      } finally {
+        console.log("Request finished (success or error).");
+      }
+    }
+  </script>
+</body>
+</html>

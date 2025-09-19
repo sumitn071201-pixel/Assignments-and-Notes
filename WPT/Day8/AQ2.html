@@ -1,0 +1,39 @@
+<html>
+    <head>
+        <script src="jquery-3.7.1.min.js">
+
+        </script>
+    </head>
+    <body>
+         Enter Number here
+         <input type="number" name="n1" id="num1">
+         <p id="p1"></p>
+         <script>
+            $(document).ready(function()
+            {
+                $("#num1").on('input' , function()
+                {
+                    let num1= parseInt($("#num1").val());
+                    let result=1
+                    if(!isNaN(num1) && num1 >=0)
+                    {for (let i=1;i<=num1; i++){
+                        result *= i;
+                    }
+                    $('#p1').text('Factorial: '+ result);
+                    }
+                    else{
+                        $('#p1').text('The entered value is not a real number')
+                    }
+                    
+            
+                
+                
+            
+
+                });
+            });
+            
+         </script>
+         <button>click</button>
+    </body>
+</html>

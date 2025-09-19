@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <script src="jquery-3.7.1.min.js"></script>
+        <style>
+            table, th, td {
+                border: 1px solid black;
+                border-collapse: collapse;
+                padding: 5px;
+            }
+        </style>
+    </head>
+    <body>
+         Enter table Number here
+         <input type="number" id="num"><br>
+         Enter from here
+         <input type="number" id="from"><br>
+         Enter upto here
+         <input type="number" id="to"><br>
+         <button id="show">Click to show table</button>
+         <br>
+         <table id="t1">
+         </table>
+        <script>
+            $(document).ready(function() {
+                $("#show").click(function() {
+                    let num = parseInt($("#num").val());
+                    let from = parseInt($("#from").val());
+                    let to = parseInt($("#to").val());
+                    let tableHtml = "<tr><th>Expression</th><th>Result</th></tr>";
+                    for(let i = from; i <= to; i++) {
+                        tableHtml += "<tr><td>" + num + " * " + i + "</td><td>" + (num * i) + "</td></tr>";
+                    }
+                    $("#t1").html(tableHtml);
+                });
+            });
+        </script>
+    </body>
+</html>

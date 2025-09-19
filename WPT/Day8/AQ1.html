@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <script src="jquery-3.7.1.min.js">
+
+        </script>
+        
+    </head>
+    <body>
+        
+        <p id="p1">Hello</p>
+        <p id="p2"></p>
+        <p id="p3"></p>
+       
+        <button type="button" value="click">click</button>
+
+        <script>
+            $(document).ready(function()
+            {
+                $("button").click(function()
+                {
+                    let a=$("#p1").html();
+                   
+                    $("#p2").html("<i>"+a+"</i>");
+                    $("#p3").html("<u>"+a+"</u>");
+
+                   
+                });
+            });
+        </script>
+
+
+    </body>
+</html>

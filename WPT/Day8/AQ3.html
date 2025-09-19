@@ -1,0 +1,48 @@
+<html>
+    <head>
+        <script src="jquery-3.7.1.min.js"></script>
+        <style>
+            table, th, td
+            {
+                border: 1px solid black;
+                border-collapse:separate;
+                padding: 1px;
+
+            }
+        </style>
+    </head>
+    <body>
+         Enter table Number here
+         <input type="number" name="n1" id="num1">
+         <br>Enter from here
+         <input type="number" name="n2" id="num2"><br>
+         <br>Enter upto here
+         <input type="number" name="n3" id="num3"><br>
+         <button id="b1">Click to show table</button>
+         
+        <script>
+            $(document).ready(function()
+            {
+                $("#b1").click(function()
+                {
+                    let n1 = parseInt($("#num1").val());
+                    let n2 = parseInt($("#num2").val());
+                    let n3 = parseInt($("#num3").val());
+                    let table = "<tr><th>Expression</th><th>Result</th></tr>";
+                    for(let i=n2; i<=n3;i++)
+                    {
+                        table += "<tr><th>"+n1+"*"+i+"</th><th>"+(n1*i)+"</th></tr>"
+                    }
+                    $("#t1").html(table);
+                });
+            });
+            
+                
+            
+        </script>
+        <table id="t1">
+        
+        </table>
+        
+    </body>
+</html>

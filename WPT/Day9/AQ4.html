@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AJAX Fetch by ID with Validation</title>
+
+</head>
+<body>
+  <h2>Fetch Post by ID (with Validation)</h2>
+
+  <form id="postForm" onsubmit="loadData(event)">
+    <label>Enter Post ID (1–100): </label>
+    <input type="number" id="postId" name="postId" 
+           required minlength="1" maxlength="3" min="1" max="100">
+    <button type="submit">Get Post</button>
+    <div id="errorMsg" class="error"></div>
+  </form>
+
+  <table id="dataTable">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Title</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Data will appear here -->
+    </tbody>
+  </table>

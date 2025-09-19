@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>AJAX Fetch by ID</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 60%;
+      margin-top: 20px;
+    }
+    th, td {
+      border: 1px solid black;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+  <h2>Fetch Post by ID (AJAX)</h2>
+
+  <label>Enter Post ID (1–100): </label>
+  <input type="number" id="postId" min="1" max="100">
+  <button onclick="loadData()">Get Post</button>
+
+  <table id="dataTable">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Title</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Data will appear here -->
+    </tbody>
+  </table>
+
+  <script>
+    function loadData() {
+      let id = document.getElementById("postId").value.trim();
+
+      if (id === "") {
+        alert("Please enter a Post ID!");
+        return;
+      }
+
+      let xhr = new XMLHttpRequest();
+      xhr.open("GET", "https://jsonplaceholder.typicode.com/posts/" + id, true);
+
+      xhr.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status === 200) {
+          let post = JSON.parse(this.responseText);
+
+          let tableBody = document.querySelector("#dataTable tbody");
+          tableBody.innerHTML = ""; // clear old data
+
+          let row = `<tr>
+                      <td>${post.id}</td>
+                      <td>${post.title}</td>
+                    </tr>`;
+          tableBody.innerHTML = row;
+        } else if (this.readyState === 4 && this.status === 404) {
+          alert("Post not found!");
+        }
+      };
+
+      xhr.send();
+    }
+  </script>
+</body>
+</html>
